@@ -10,6 +10,7 @@ import os
 from datetime import timedelta, datetime
 import sys
 import argparse
+from astropy.time import Time
 
 try:
 	import bpy
