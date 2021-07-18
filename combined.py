@@ -5,7 +5,6 @@
 # Render an image/animation instead of just saving the blend file
 
 ## Init script
-import * from scripts
 import os
 from datetime import timedelta, datetime
 import sys
@@ -29,6 +28,9 @@ if not dir or dir != "":
 if dir not in sys.path:
 	sys.path.append(dir)
 print(os.path.dirname(__file__))
+
+# Import only after adding current directory to sys.path (done in above script)
+from scripts import *
 
 
 def clean_slate():
