@@ -51,10 +51,18 @@ def clean_slate():
 	for m in bpy.data.materials:
 		bpy.data.materials.remove(m)
 
+
+def makeTimeArr(timeStr):
+	return timeStr.split(':')
+
+
+def makeDateArr(dateStr):
+	return dateStr.split('-')
+
+
 if __name__ == "__main__":
 
     argv = sys.argv
-    print(argv)
 
     if "--" not in argv:
         argv = []
@@ -68,11 +76,13 @@ if __name__ == "__main__":
 
     parser = argparse.ArgumentParser(description=usage_text)
     parser.add_argument("--time", "-t", nargs=1, type=makeTimeArr, default=[['00','00']], help="Time to be inputted in the format 'HH:MM'", dest="time")
-    parser.add_argument("--date", "-d", nargs=1, type=makeDateArr, default=[['2021','07','26']], help="Date to be inputted in the format YYYY:MM:DD", dest="date")
+    parser.add_argument("--date", "-d", nargs=1, type=makeDateArr, default=[['2021','03','26']], help="Date to be inputted in the format YYYY-MM-DD", dest="date")
     args = parser.parse_args(argv)
     time = timedelta(hours=int(args.time[0][0]), minutes=int(args.time[0][1]))
     date = datetime(year=int(args.date[0][0]), month=int(args.date[0][1]), day=int(args.date[0][2]))
     finalTime = Time(date + time)
+
+    print(finalTime)
 
     clean_slate()
 
