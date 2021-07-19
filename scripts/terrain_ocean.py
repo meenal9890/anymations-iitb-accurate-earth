@@ -102,6 +102,10 @@ def make_terrain_ocean():
     #bump texture
     bump_img = bpy.data.images.load(os.path.join(".", os.path.normpath(r"./Textures/earth/Bump.jpg")))
     bump_tex.image = bump_img
+    #ocean mask image
+    ocean_mask_img = bpy.data.images.load(os.path.join(".", os.path.normpath(r"./Textures/earth/Ocean_Mask.png")))
+    ocean_mask_tex.image = ocean_mask_img
+
     #changing value of img texture nodes
     base_tex.projection = 'SPHERE'
     base_tex.extension = 'EXTEND'
@@ -114,10 +118,10 @@ def make_terrain_ocean():
     bump_tex.interpolation = 'Linear'
     bump.inputs[0].default_value = 3
     bump.inputs[1].default_value = 2
-
-    #ocean mask image
-    ocean_mask_img = bpy.data.images.load(os.path.join(".", os.path.normpath(r"./Textures/earth/Ocean_Mask.png")))
-    ocean_mask_tex.image = ocean_mask_img
+    #changing color space to non color
+    bpy.data.images["Ocean_Mask.png"].colorspace_settings.name = 'Non-Color'
+    bpy.data.images["Albedo.jpg"].colorspace_settings.name = 'Non-Color'
+    bpy.data.images["Bump.jpg"].colorspace_settings.name = 'Non-Color'
 
     #changing values of glossy node parameters
     glossy.inputs[1].default_value = 0.48
